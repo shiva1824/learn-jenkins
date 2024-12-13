@@ -6,18 +6,31 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh echo "This is bulid"
+                sh 'echo This is bulid'
             }
         }
         stage('Test') { 
             steps {
-                sh echo "This is Test"
+                sh echo 'echo This is Test'
             }
         }
         stage('Deploy') { 
             steps {
-                sh echo "This is Deploy"
+                sh echo 'echo This is Deploy'
             }
+        }
+    }
+
+    post {
+        always{
+            echo "This sections runs always"
+            deleteDir()
+        }
+        success{
+            echo "This section run when pipeline success"
+        }
+        failure{
+            echo "This section run when pipeline failure"
         }
     }
 }
